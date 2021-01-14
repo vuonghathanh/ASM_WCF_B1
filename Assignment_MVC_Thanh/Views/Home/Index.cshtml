@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Assignment_MVC_Thanh.Models.Product>
+
+@{
+    ViewBag.Title = "List Products";
+}
+
+<form action="/" method="get">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="form-group">
+                <input name="key" class="form-control" placeholder="Search by name..." />
+            </div>
+        </div>
+        <div class="col-md-3">
+            <button type="submit" class="btn btn-success">Search</button>
+        </div>
+    </div>
+</form>
+<div class="container">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="panel panel-default col-md-4">
+                <div class="panel-heading">@Html.DisplayFor(modelItem => item.Name) - @Html.DisplayFor(modelItem => item.CreatedAt)</div>
+                <div class="panel-body">
+                    <img src="@Html.DisplayFor(modelItem => item.Thumbnail)" />
+                    <p>@Html.DisplayFor(modelItem => item.Description)</p>
+                </div>
+                <div class="panel-footer">@Html.DisplayFor(modelItem => item.Price)</div>
+                <button class="btn btn-info">
+                    @Html.ActionLink("Detail", "Detail", new { id = item.Id })
+                </button>
+            </div>
+        }
+    </div>
+</div>
